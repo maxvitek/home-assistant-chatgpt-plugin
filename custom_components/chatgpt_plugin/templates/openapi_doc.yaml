@@ -56,7 +56,85 @@ paths:
       responses:
         "200":
           description: OK
-
+  /services/light/turn_on:
+    post:
+      operationId: TurnOnLight
+      summary: Turn on a light device
+      requestBody:
+        description: 'Options for turning on the light, including color attributes'
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                entity_id:
+                  type: string
+                color_temp:
+                  type: integer
+                  description: Color temperature in Kelvin
+                hs_color:
+                  type: array
+                  items:
+                    type: number
+                  description: Hue and saturation color value
+                rgb_color:
+                  type: array
+                  items:
+                    type: integer
+                  description: RGB color value
+                rgbw_color:
+                  type: array
+                  items:
+                    type: integer
+                  description: RGBW color value
+                rgbww_color:
+                  type: array
+                  items:
+                    type: integer
+                  description: RGBWW color value
+                xy_color:
+                  type: array
+                  items:
+                    type: number
+                  description: XY color value
+      responses:
+        "200":
+          description: OK
+  /services/light/turn_off:
+    post:
+      operationId: TurnOffLight
+      summary: Turn off a light device
+      requestBody:
+        description: Entity ID of the light to be turned off
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                entity_id:
+                  type: string
+      responses:
+        "200":
+          description: OK
+  /services/automation/trigger:
+    post:
+      operationId: TriggerAutomation
+      summary: Trigger an automation
+      requestBody:
+        description: Entity ID of the automation to be run.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                entity_id:
+                  type: string
+      responses:
+        "200":
+          description: OK
 components:
   schemas:
     Domain:
